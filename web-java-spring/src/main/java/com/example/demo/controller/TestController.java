@@ -16,13 +16,14 @@ public class TestController {
     List<Student> test() {
         List<Student> list = new ArrayList<>();
         Random random = new Random();
-        int i = random.nextInt(1,10);
+        int i = random.nextInt(1, 10);
         for (int j = 0; j < i; j++) {
             list.add(Student.builder()
                     .name("random name" + random.nextInt())
                     .id("" + random.nextInt())
                     .build());
         }
+        System.out.println("log" + System.currentTimeMillis());
         return list;
     }
 

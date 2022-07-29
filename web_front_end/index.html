@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <h1>hello</h1>
-    <h1>world</h1>
-    <script src="./index.js"/>
+
+    <h1>hellodsdf</h1>
+    <h1>adassdd</h1>
+    <h2>hahdfasdsdfsdda</h2>
+    <script>
+        fetch('http://localhost:9090/test', {
+                mode: 'cors',
+                method:'GET',
+                headers:{
+                    "Content-Type":'application/json',
+                    'Access-Control-Allow-Origin':'*'
+                }
+            })
+            .then(res => {
+                console.log("1", res)
+                return res.text()
+            })
+            .then(res => {
+                console.log("2", res);
+                return res;
+            }).catch(err=>console.log("3",err))
+    </script>
+
 
 </body>
+
 </html>
