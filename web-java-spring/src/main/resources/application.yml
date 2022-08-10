@@ -1,0 +1,9 @@
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-alias: skipper
+    key-store: "D:/workspace/github/web-demo/web-java-spring/src/main/resources/skipper.keystore"
+    key-store-type: jks
+    key-store-password: skipper
+    key-password: skipper
