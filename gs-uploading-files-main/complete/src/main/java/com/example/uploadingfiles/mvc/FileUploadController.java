@@ -1,4 +1,4 @@
-package com.example.uploadingfiles;
+package com.example.uploadingfiles.mvc;
 
 import java.io.IOException;
 import java.nio.file.Path;
