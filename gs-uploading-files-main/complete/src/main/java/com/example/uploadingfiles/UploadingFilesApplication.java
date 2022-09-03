@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.uploadingfiles.storage.StorageProperties;
 import com.example.uploadingfiles.storage.StorageService;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
@@ -22,6 +24,16 @@ public class UploadingFilesApplication {
 		return (args) -> {
 			storageService.deleteAll();
 			storageService.init();
+		};
+	}
+
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**").allowedOrigins("http://localhost:8080");
+			}
 		};
 	}
 }
