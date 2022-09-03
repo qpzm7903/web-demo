@@ -53,10 +53,16 @@ public class FileUploadRestController {
 				.contentType(MediaType.APPLICATION_JSON_UTF8).body(file);
 	}
 
+	/**
+	 * 如果上传单个文件，可以写单个multipartFile即可，但是也用List，List兼容
+	 * @param files 待上传的文件
+	 * @return 返回上传结果
+	 */
 	@PostMapping("/files")
-	public String handleFileUpload(@RequestParam("file") MultipartFile file) {
-
-		storageService.store(file);
+	public String handleFileUpload(@RequestParam("file") List<MultipartFile> files) {
+		for (MultipartFile file : files) {
+			storageService.store(file);
+		}
 
 		return "success";
 	}
