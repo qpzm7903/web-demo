@@ -81,3 +81,26 @@ springdoc.swagger-ui.path=/swagger-ui.html
 springdoc.api-docs.path=/api-docs
 ```
 如果要访问yaml格式，则访问`/api-docs.yaml`
+
+
+
+# messageResource
+https://docs.spring.io/spring-boot/docs/2.1.13.RELEASE/reference/html/boot-features-internationalization.html
+
+主要配置
+```properties
+spring.messages.basename=messages,config.i18n.messages
+```
+注意，配置用逗号分割，并且写到文件名.
+
+但是spring原生的并不是很好用，要制定到文件名。那么如果有很多文件，就需要手动添加，能否有通配符的写法？
+
+答案是，spring没提供，需要我们自己自定义一下
+
+参考
+
+- http://springrules.blogspot.com/2014/09/using-wildcards-for-spring.html
+- https://stackoverflow.com/questions/34724398/reloadableresourcebundlemessagesource-using-wildcard
+
+expected to be of type 'org.springframework.context.support.ReloadableResourceBundleMessageSource' but was actually of type 'org.springframework.context.support.ResourceBundleMessageSource'
+
