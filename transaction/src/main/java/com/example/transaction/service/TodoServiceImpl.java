@@ -75,7 +75,7 @@ public class TodoServiceImpl implements TodoService {
     public Todo createAndDoIt(Todo todo, boolean exception) {
         todo.setDone(false);
         createAndDegradation(todo, exception);
-        done(todo,exception);
+        done(todo, exception);
         return todo;
     }
 
@@ -83,5 +83,45 @@ public class TodoServiceImpl implements TodoService {
     @Override
     public void done(Todo todo, boolean exception) {
         todoRepo.done(todo.getId());
+    }
+
+    @Transactional
+    @Override
+    public void testException() {
+
+        Todo build = Todo.builder().name("").title("").content("").done(false).build();
+        try {
+            Todo todo = testCreateA(build, true);
+        } catch (RuntimeException e) {
+            System.out.println("I am ok!");
+        }
+
+        testCreateB(build, false);
+
+    }
+
+
+    @Transactional(rollbackFor = RuntimeException.class)
+    @Override
+    public Todo testCreateA(Todo todo, boolean exception) {
+        System.out.println("i am create A");
+
+        Todo todo1 = todoRepo.createTodo(todo);
+        if (exception) {
+            throw new RuntimeException();
+        }
+        return todo1;
+    }
+
+    @Transactional
+    @Override
+    public Todo testCreateB(Todo todo, boolean exception) {
+
+        System.out.println("I am create B");
+        Todo todo1 = todoRepo.createTodo(todo);
+        if (exception) {
+            throw new RuntimeException();
+        }
+        return todo1;
     }
 }

@@ -26,4 +26,13 @@ public interface TodoService {
 
     @Transactional
     void done(Todo todo, boolean exception);
+
+    @Transactional
+    void testException();
+
+    @Transactional(rollbackFor = RuntimeException.class)
+    Todo testCreateA(Todo todo, boolean exception);
+
+    @Transactional
+    Todo testCreateB(Todo todo, boolean exception);
 }

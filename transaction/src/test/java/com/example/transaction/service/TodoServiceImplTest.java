@@ -2,6 +2,7 @@ package com.example.transaction.service;
 
 import com.example.transaction.domain.Todo;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +20,7 @@ import java.util.List;
 class TodoServiceImplTest {
 
     @Autowired
-    private TodoServiceImpl todoService;
+    private TodoService todoService;
 
     @Test
     void test_context_load() {
@@ -63,6 +64,15 @@ class TodoServiceImplTest {
         assert emptyTodo.getId() != null;
 
         assert todoService.getTodo(emptyTodo.getId()).getDone();
+    }
+
+    @Test
+    void test_exceptin() {
+        todoService.clear();
+        todoService.testException();
+        List<Todo> allTodo = todoService.getAllTodo();
+        Assertions.assertEquals(1, allTodo.size());
+
     }
 
     private Todo getEmptyTodo() {
