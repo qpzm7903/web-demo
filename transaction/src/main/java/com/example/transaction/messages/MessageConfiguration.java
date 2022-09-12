@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.Objects;
 
 /**
@@ -39,7 +40,10 @@ public class MessageConfiguration {
             Resource[] resources = new PathMatchingResourcePatternResolver().getResources(locationPattern);
             for (Resource resource : resources) {
                 log.debug("load {} resource to message resource", resource.getFilename());
-                messageSource.addBasenames(baseNameFormat, Objects.requireNonNull(resource.getFilename()).split("\\.")[0]);
+                String[] split = Objects.requireNonNull(resource.getFilename()).split("\\.");
+                String baseName = split[0];
+                String format = MessageFormat.format(baseNameFormat, baseName);
+                messageSource.addBasenames(baseNameFormat, format);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

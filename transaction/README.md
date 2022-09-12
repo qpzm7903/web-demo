@@ -102,5 +102,18 @@ spring.messages.basename=messages,config.i18n.messages
 - http://springrules.blogspot.com/2014/09/using-wildcards-for-spring.html
 - https://stackoverflow.com/questions/34724398/reloadableresourcebundlemessagesource-using-wildcard
 
+
+问题：
 expected to be of type 'org.springframework.context.support.ReloadableResourceBundleMessageSource' but was actually of type 'org.springframework.context.support.ResourceBundleMessageSource'
 
+因为默认不是这个bean，需要自行定义，如
+```java
+@org.springframework.context.annotation.Configuration
+public class Configuration {
+
+    @Bean
+    public MessageSource messageSource() {
+        return new ReloadableResourceBundleMessageSource();
+    }
+}
+```
