@@ -11,8 +11,7 @@ import java.util.List;
 /**
  * todo description
  *
- * @author qpzm7903
- * @since 2022-09-10-8:07
+ * @author qpzm7903 * @since 2022-09-10-8:07
  */
 @RestController
 @RequestMapping("/todos")
@@ -25,7 +24,7 @@ public class TodoController {
 
     @GetMapping
     public List<Todo> list() {
-        return repo.list();
+        return todoService.getAllTodo();
     }
 
     @PostMapping
