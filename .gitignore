@@ -24,3 +24,6 @@ hs_err_pid*
 /web-java-spring/mvnw.cmd
 /web-java-spring/mvnw
 /.idea/
+
+mvmw
+mvmw.cmd
