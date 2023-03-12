@@ -16,8 +16,13 @@ public class ActuatorApplication {
 	static
 	class TestController{
 
+
+		public TestController() {
+			System.out.println("hello");
+		}
+
 		@GetMapping
-		public void test() {
+		public void testNeam() {
 
 		}
 		
