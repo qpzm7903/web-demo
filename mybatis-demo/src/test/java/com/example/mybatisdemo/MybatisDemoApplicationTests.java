@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 class MybatisDemoApplicationTests {
     @Autowired
@@ -26,6 +28,13 @@ class MybatisDemoApplicationTests {
     void test_get_student() {
         Student byId = studentRepo.getById(1);
         Assertions.assertNotNull(byId);
+    }
+
+    @Test
+    void test_get_names() {
+        List<String> names = studentRepo.getNames();
+        System.out.println(names);
+        Assertions.assertTrue(names.size() > 1);
     }
 
 }
